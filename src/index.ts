@@ -1,12 +1,9 @@
-type Person = {
-  name: string;
-  age: number;
-  address?: string;
-  city?: string;
-};
+type NullableNumber = number | null | undefined;
+type NullableString = string | undefined;
+type NullableStringArray = string[] | null;
 
-type MyRequired<T> = {
-  [K in keyof T]-?: T[K];
-};
+type MyNonNullable<T> = T extends null | undefined ? never : T;
 
-type PersonWithAddressAndCityRequired = Required<Person>;
+type NonNullableNumber = NonNullable<NullableNumber>;
+type NonNullableString = NonNullable<NullableString>;
+type NonNullableStringArray = NonNullable<NullableStringArray>;
