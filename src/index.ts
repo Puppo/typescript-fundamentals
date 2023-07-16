@@ -1,6 +1,28 @@
-type Color = "red" | "blue" | "green";
+type Square = {
+  type: "square";
+  size: number;
+};
 
-const red = "red" satisfies Color;
-const green = "green" satisfies Color;
-const blue = "blue" satisfies Color;
-// const blue2 = "blue2" satisfies Color;
+type Rectangle = {
+  type: "rectangle";
+  width: number;
+  height: number;
+};
+
+type Circle = {
+  type: "circle";
+  radius: number;
+};
+
+type Shape = Square | Rectangle | Circle;
+
+function area(shape: Shape): number {
+  switch (shape.type) {
+    case "square":
+      return shape.size * shape.size;
+    case "rectangle":
+      return shape.width * shape.height;
+    case "circle":
+      return Math.pow(shape.radius, 2) * Math.PI;
+  }
+}
