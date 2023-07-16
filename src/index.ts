@@ -1,14 +1,13 @@
-type FunctionResult =
-  | {
-      result: "success";
-      value: string;
-    }
-  | {
-      result: "error";
-      error: Error;
-    };
+type Person = {
+  name: string,
+  age: number,
+  address: string
+  city: string,
+};
 
-type ErrorResult =
-  Extract<FunctionResult, { result: "error" }>;
-type SuccessResult =
-  Extract<FunctionResult, { result: "success" }>;
+// type MyOmit<T, U extends keyof T> = {
+//   [K in Exclude<keyof T, U>]: T[K]
+// }
+
+type PersonWithoutAddress =
+  Omit<Person, 'address' | 'city'>
