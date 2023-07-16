@@ -1,12 +1,16 @@
-type Person = {
-  name: string;
-  age: number;
-};
+type FunctionResult =
+  | {
+      result: "success";
+      value: string;
+    }
+  | {
+      result: "error";
+      error: Error;
+    };
 
-function hello(p: Readonly<Person>): void {
-  p.age = 34;
+type GetError<T> = T extends { result: "error" } ? T : never;
 
-  // do something
-}
+type GetSuccess<T> = T extends { result: "success" } ? T : never;
 
-hello({ name: "Jack", age: 23 });
+type ErrorResult = GetError<FunctionResult>;
+type SuccessResult = GetSuccess<FunctionResult>;
