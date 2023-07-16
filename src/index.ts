@@ -1,11 +1,12 @@
-type Options = {
-  debug: boolean;
-  log: "info" | "warn" | "error";
-  port: number;
+type Person = {
+  name: string;
+  age: number;
 };
 
-function start({ debug = true, log = "warn", port = 3000 }: Partial<Options>) {
+function hello(p: Readonly<Person>): void {
+  p.age = 34;
+
   // do something
 }
 
-start({});
+hello({ name: "Jack", age: 23 });
