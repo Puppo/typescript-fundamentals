@@ -1,7 +1,12 @@
-type Status = "idle" | "loading" | "loaded" | "error";
+type Person = {
+  name: string;
+  age: number;
+  address?: string;
+  city?: string;
+};
 
-type MyExclude<T, U> = T extends U ? never : T;
+type MyRequired<T> = {
+  [K in keyof T]-?: T[K];
+};
 
-type StatusWithoutError = Exclude<Status, "error">;
-
-const t: StatusWithoutError = "idle";
+type PersonWithAddressAndCityRequired = Required<Person>;
